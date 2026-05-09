@@ -1,0 +1,40 @@
+# Ignored files for all Git repositories
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+.md
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.bak
+*.swo
+*.txt
+
+# Build and Compilation Artifacts
+/build/
+/dist/
+*.class
+*.exe
+*.dll
+
+# Dependency Directories
+/node_modules/
+/vendor/
+/venv/
+
+# Log Files and Temporary Data
+*.log
+*.tmp
+temp/
+
+# Configuration and Environment Files
+.env
+.env.local
+config.local.php
+
+# Package Manager Files
+package-lock.json
+yarn.lock

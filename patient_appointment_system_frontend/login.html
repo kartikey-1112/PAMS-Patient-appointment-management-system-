@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HealthCare Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html" style="font-size: 1.5rem;">
+                <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+            </a>
+            <div class="d-flex gap-2">
+                <a href="index.html" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-1"></i>Home
+                </a>
+                <a href="register.html" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-1"></i>Sign Up
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-lg-5 col-md-7">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-user text-white" style="font-size: 2rem;"></i>
+                            </div>
+                            <h2 class="fw-bold text-dark">Welcome Back</h2>
+                            <p class="text-muted">Please sign in to your account</p>
+                        </div>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope text-muted"></i>
+                                    </span>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock text-muted"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="userType" class="form-label">Login As</label>
+                                <select class="form-select" id="userType" required>
+                                    <option value="">Select user type</option>
+                                    <option value="patient">Patient</option>
+                                    <option value="doctor">Doctor</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col text-end">
+                                    <a href="#" class="text-decoration-none">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                                </button>
+                            </div>
+                        </form>
+                        <div class="text-center mb-3">
+                            <span class="text-muted">Don't have an account?</span>
+                        </div>
+                        <div class="d-grid">
+                            <a href="register.html" class="btn btn-outline-primary">
+                                <i class="fas fa-user-plus me-2"></i>Create New Account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-4">
+                        <div class="card text-center border-0 bg-transparent">
+                            <div class="card-body p-2">
+                                <i class="fas fa-user-injured text-primary mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted d-block">Patient Login</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center border-0 bg-transparent">
+                            <div class="card-body p-2">
+                                <i class="fas fa-user-md text-success mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted d-block">Doctor Login</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center border-0 bg-transparent">
+                            <div class="card-body p-2">
+                                <i class="fas fa-user-shield text-warning mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted d-block">Admin Login</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const password = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                password.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+        // Form submission handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const userType = document.getElementById('userType').value;
+
+            if (!email || !password || !userType) {
+                alert('⚠️ Please fill in all fields');
+                return;
+            }
+
+            // Determine API URL based on user type
+            let apiUrl = '';
+            switch(userType) {
+                case 'patient':
+                    apiUrl = 'http://localhost:9090/loginPatient';
+                    break;
+                case 'doctor':
+                    apiUrl = 'http://localhost:9090/loginDoctor';
+                    break;
+                case 'admin':
+                    apiUrl = 'http://localhost:9090/loginAdmin';
+                    break;
+                default:
+                    alert('❌ Unknown user type');
+                    return;
+            }
+
+            const loginData = { email, password };
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginData)
+            })
+                .then(response => response.json().then(result => ({ response, result })))
+                .then(({ response, result }) => {
+                    if (!response.ok) {
+                        // Show specific error message from server in popup
+                        const errorMsg = result.message || 'Login failed';
+                        alert('❌ ' + errorMsg);
+                        throw new Error(errorMsg);
+                    }
+                    return result;
+                })
+                .then(response => {
+                    // Save user info in localStorage
+                    const loggedUser = {
+                        ...response.data,
+                        userType            // Add userType to the loggedUser object
+                    };
+
+                    console.log(loggedUser)
+
+                    localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+
+                    // Show success popup
+                    alert(`🎉 Login successful! Welcome ${response.data.name || ''}`);
+
+                    // Redirect to appropriate dashboard
+                    switch(userType) {
+                        case 'patient':
+                            window.location.href = 'dashboard/patient_dashboard.html';
+                            break;
+                        case 'doctor':
+                            window.location.href = 'dashboard/doctor_dashboard.html';
+                            break;
+                        case 'admin':
+                            window.location.href = 'dashboard/admin_dashboard.html';
+                            break;
+                    }
+                })
+                .catch(error => {
+                    console.error('Login Error:', error);
+                    // Error message is shown in the alert popup
+                });
+        });
+    </script>
+</body>
+</html>

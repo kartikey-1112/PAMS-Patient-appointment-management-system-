@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - HealthCare Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+    .btn-success {
+      background: linear-gradient(90deg, #198754 0%, #20c997 100%);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-success:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(25, 135, 84, 0.4);
+    }
+    .btn-outline-danger {
+      transition: all 0.3s ease;
+    }
+    .btn-outline-danger:hover {
+      background-color: #dc3545;
+      color: white;
+      transform: scale(1.05);
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #198754;
+      box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+    }
+    .list-group-item {
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .list-group-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: linear-gradient(90deg, #343a40 0%, #495057 100%);
+      border-top: 1px solid #6c757d;
+    }
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="dashboard/patient_dashboard.html">
+        <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+      </a>
+      <div class="d-flex align-items-center">
+        <button class="btn btn-outline-secondary me-2" onclick="history.back()">
+          <i class="fas fa-arrow-left me-1"></i>Back
+        </button>
+        <button class="btn btn-outline-danger" id="logoutBtn">
+          <i class="fas fa-sign-out-alt me-1"></i>Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 pt-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="text-center">
+          <h2 class="text-success mb-3"><i class="fas fa-calendar-plus fa-2x me-3"></i>Book Your Appointment</h2>
+          <p class="text-muted">Select a doctor and choose from available time slots to schedule your visit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Select Doctor -->
+    <div class="card p-4 mb-4">
+      <h4 class="mb-4 text-primary"><i class="fas fa-user-md me-2"></i>Select Doctor & Time Slot</h4>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="doctorSelect" class="form-label fw-bold">Choose Doctor</label>
+          <select id="doctorSelect" class="form-select">
+            <option value="">-- Select Doctor --</option>
+          </select>
+        </div>
+
+        <!-- Available Slots -->
+        <div class="col-md-6 mb-3" id="slotsContainer" style="display:none;">
+          <label for="timeSlotSelect" class="form-label fw-bold">Available Time Slots</label>
+          <select id="timeSlotSelect" class="form-select"></select>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button id="bookBtn" class="btn btn-success btn-lg" disabled>
+          <i class="fas fa-check-circle me-2"></i>Book Appointment
+        </button>
+      </div>
+    </div>
+
+    <!-- Your Appointments -->
+    <div class="card p-4">
+      <h4 class="mb-4 text-primary"><i class="fas fa-list me-2"></i>Your Appointments</h4>
+      <div id="appointmentsList" class="row"></div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-3 text-center mt-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 HealthCare Pro. All rights reserved. | <i class="fas fa-heart text-danger"></i> Caring for Your Health</p>
+    </div>
+  </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Check if logged-in user is a patient
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    if (!loggedUser || loggedUser.userType !== "patient") {
+      alert("You must be logged in as a patient to book an appointment!");
+      window.location.href = "login.html";
+    }
+
+    const patient = loggedUser; // Patient info
+    let appointments = [];
+    let allDoctors = []; // Store all fetched doctors
+    let availableDoctors = []; // Store only doctors with time slots
+
+    const doctorSelect = document.getElementById("doctorSelect");
+    const slotsContainer = document.getElementById("slotsContainer");
+    const timeSlotSelect = document.getElementById("timeSlotSelect");
+    const bookBtn = document.getElementById("bookBtn");
+    const appointmentsList = document.getElementById("appointmentsList");
+
+    // Fetch doctors and their slots from backend
+    async function fetchDoctors() {
+      try {
+        const res = await fetch("http://localhost:9090/fetchAllDoctors");
+        if (!res.ok) throw new Error("Failed to fetch doctors");
+        const response = await res.json();
+        
+        allDoctors = response.data || [];
+        
+        // --- MODIFICATION START ---
+        // Filter to include only doctors with a non-empty 'doctorTimeSlots' array
+        availableDoctors = allDoctors.filter(d => 
+            Array.isArray(d.doctorTimeSlots) && d.doctorTimeSlots.length > 0
+        );
+        // --- MODIFICATION END ---
+        
+        populateDoctorDropdown();
+      } catch (err) {
+        alert("Error fetching doctors: " + err.message);
+      }
+    }
+
+    // Populate doctor dropdown with ONLY available doctors
+    function populateDoctorDropdown() {
+      doctorSelect.innerHTML = '<option value="">-- Select Doctor --</option>';
+      if (availableDoctors.length === 0) {
+          const option = document.createElement("option");
+          option.textContent = "No doctors with available slots.";
+          option.disabled = true;
+          doctorSelect.appendChild(option);
+          bookBtn.disabled = true;
+          return;
+      }
+      
+      availableDoctors.forEach(d => {
+        const option = document.createElement("option");
+        option.value = d.doctorId;
+        option.textContent = d.name;
+        doctorSelect.appendChild(option);
+      });
+    }
+
+
+    // Show available slots on doctor selection (from backend)
+    doctorSelect.addEventListener("change", () => {
+      // Find the doctor from the full list or the available list (using availableDoctors for efficiency)
+      const selectedDoctor = availableDoctors.find(d => d.doctorId == doctorSelect.value);
+      
+      timeSlotSelect.innerHTML = "";
+      slotsContainer.style.display = "none";
+      bookBtn.disabled = true;
+
+      if (selectedDoctor && Array.isArray(selectedDoctor.doctorTimeSlots)) {
+        selectedDoctor.doctorTimeSlots.forEach(slot => {
+          const option = document.createElement("option");
+          option.value = slot.timeSlotId;
+          option.textContent = `${slot.slotDate} | ${slot.startTime} - ${slot.endTime}`;
+          timeSlotSelect.appendChild(option);
+        });
+        slotsContainer.style.display = "block";
+        // Enable booking only if a doctor is selected and slots are displayed
+        if (selectedDoctor.doctorTimeSlots.length > 0) {
+            bookBtn.disabled = false;
+        }
+      }
+    });
+
+    // Fetch appointments from backend for this patient
+    async function fetchAppointments() {
+      appointmentsList.innerHTML = '<div class="col-12"><div class="loading-spinner"><i class="fas fa-spinner fa-spin fa-2x text-primary"></i><p class="mt-2">Loading appointments...</p></div></div>';
+      try {
+        const res = await fetch("http://localhost:9090/fetchAllAppointment");
+        if (!res.ok) throw new Error("Failed to fetch appointments");
+        const response = await res.json();
+        // Filter appointments for this patient
+        appointments = (response.data || []).filter(app => app.patient && app.patient.patientId === patient.patientId);
+
+        // Update appointments in localStorage for patient profile
+        loggedUser.appointments = appointments;
+        localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+
+        renderAppointments();
+      } catch (err) {
+        appointmentsList.innerHTML = `<div class="col-12"><div class="card text-center p-4 border-danger"><i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i><p class="text-danger">${err.message}</p></div></div>`;
+      }
+    }
+
+    // Book appointment via API
+    bookBtn.addEventListener("click", async () => {
+      const doctorId = parseInt(doctorSelect.value);
+      const timeSlotId = parseInt(timeSlotSelect.value);
+
+      if (!doctorId || !timeSlotId) {
+          alert("Please select a doctor and a time slot.");
+          return;
+      }
+
+      const payload = {
+        patient: { patientId: patient.patientId },
+        doctor: { doctorId },
+        doctorTimeSlots: { timeSlotId },
+        status: "BOOKED"
+      };
+
+      try {
+        const res = await fetch("http://localhost:9090/createAppointment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+      
+        
+        const response = await res.json();
+        if (!res.ok) {
+            // Include message from server if available
+            throw new Error(response.message || "Failed to create appointment");
+        }
+        
+        alert(response.message || "Appointment booked successfully!");
+        fetchAppointments(); // Refresh list
+        // Optionally, reset selection after booking
+        doctorSelect.value = "";
+        slotsContainer.style.display = "none";
+        bookBtn.disabled = true;
+
+      } catch (err) {
+        alert("Error booking appointment: " + err.message);
+      }
+    });
+
+    // Render appointments list
+    function renderAppointments() {
+      appointmentsList.innerHTML = "";
+      if (appointments.length === 0) {
+        appointmentsList.innerHTML = '<div class="col-12"><div class="card text-center p-4"><i class="fas fa-calendar-times fa-3x text-muted mb-3"></i><p class="text-muted">No appointments found.</p></div></div>';
+        return;
+      }
+      appointments.forEach(a => {
+        const col = document.createElement("div");
+        col.className = "col-md-6 col-lg-4 mb-3";
+
+        // Ensure nested properties exist before accessing them
+        const doctorName = a.doctor ? a.doctor.name : "N/A Doctor";
+        const doctorSpecialization = a.doctor ? a.doctor.specialization : "N/A";
+        const slotDate = a.doctorTimeSlots ? a.doctorTimeSlots.slotDate : "N/A Date";
+        const startTime = a.doctorTimeSlots ? a.doctorTimeSlots.startTime : "N/A Time";
+        const endTime = a.doctorTimeSlots ? a.doctorTimeSlots.endTime : "";
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <i class="fas fa-user-md fa-2x text-primary me-3"></i>
+                <div>
+                  <h6 class="card-title mb-1">${doctorName}</h6>
+                  <small class="text-muted">${doctorSpecialization}</small>
+                </div>
+              </div>
+              <p class="card-text mb-2"><i class="fas fa-calendar-day me-2"></i><strong>Date:</strong> ${slotDate}</p>
+              <p class="card-text mb-2"><i class="fas fa-clock me-2"></i><strong>Time:</strong> ${startTime} - ${endTime}</p>
+              <p class="card-text mb-0"><i class="fas fa-info-circle me-2"></i><strong>Status:</strong> <span class="badge bg-${getStatusBadgeClass(a.status)}">${a.status}</span></p>
+            </div>
+          </div>
+        `;
+        appointmentsList.appendChild(col);
+      });
+    }
+
+    // Helper function for status badge class
+    function getStatusBadgeClass(status) {
+      switch (status?.toLowerCase()) {
+        case 'booked': return 'success';
+        case 'pending': return 'warning';
+        case 'cancelled': return 'danger';
+        default: return 'secondary';
+      }
+    }
+
+    // Initial fetch
+    fetchDoctors();
+    fetchAppointments();
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "index.html";
+    });
+</script>
+</body>
+</html>

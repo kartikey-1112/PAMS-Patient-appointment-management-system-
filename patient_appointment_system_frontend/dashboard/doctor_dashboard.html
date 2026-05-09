@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard - HealthCare Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .sidebar {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      border-right: 2px solid #e9ecef;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    }
+    .sidebar .nav-link {
+      color: #495057;
+      font-weight: 500;
+      padding: 12px 20px;
+      margin: 5px 0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover {
+      background-color: #e9ecef;
+      transform: translateX(5px);
+    }
+    .sidebar .nav-link.active {
+      background: linear-gradient(90deg, #198754 0%, #20c997 100%);
+      color: white !important;
+      box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3);
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+    .btn-success {
+      background: linear-gradient(90deg, #198754 0%, #20c997 100%);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-success:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(25, 135, 84, 0.4);
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    }
+    .btn-outline-danger {
+      transition: all 0.3s ease;
+    }
+    .btn-outline-danger:hover {
+      background-color: #dc3545;
+      color: white;
+      transform: scale(1.05);
+    }
+    .list-group-item {
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .list-group-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .form-control {
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #198754;
+      box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+    }
+    footer {
+      background: linear-gradient(90deg, #343a40 0%, #495057 100%);
+      border-top: 1px solid #6c757d;
+    }
+    .stats-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .stats-card h5 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    .stats-card p {
+      margin: 0;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="../index.html">
+        <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+      </a>
+      <div class="d-flex">
+        <button class="btn btn-outline-danger" id="logoutBtn">
+          <i class="fas fa-sign-out-alt me-1"></i>Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 p-3 sidebar">
+        <h5 class="fw-bold mb-4 text-success"><i class="fas fa-user-md me-2"></i>Doctor Dashboard</h5>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link active" data-bs-toggle="pill" href="#profile"><i class="fas fa-id-card me-2"></i>Profile</a>
+          <a class="nav-link" data-bs-toggle="pill" href="#update"><i class="fas fa-user-edit me-2"></i>Update Profile</a>
+          <a class="nav-link" data-bs-toggle="pill" href="#slots"><i class="fas fa-clock me-2"></i>Time Slots</a>
+          <a class="nav-link" data-bs-toggle="pill" href="#appointments"><i class="fas fa-calendar-check me-2"></i>Appointments</a>
+          <a class="nav-link text-danger" data-bs-toggle="pill" href="#delete"><i class="fas fa-trash-alt me-2"></i>Delete Account</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 p-4">
+        <div class="tab-content">
+
+          <!-- Profile -->
+          <div class="tab-pane fade show active" id="profile">
+            <div class="row mb-4">
+              <div class="col-md-4">
+                <div class="stats-card">
+                  <i class="fas fa-calendar-check fa-2x mb-2"></i>
+                  <h5 id="appointmentCount">0</h5>
+                  <p>Total Appointments</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stats-card">
+                  <i class="fas fa-clock fa-2x mb-2"></i>
+                  <h5 id="slotCount">0</h5>
+                  <p>Time Slots</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stats-card">
+                  <i class="fas fa-user-md fa-2x mb-2"></i>
+                  <h5 id="specializationDisplay">-</h5>
+                  <p>Specialization</p>
+                </div>
+              </div>
+            </div>
+            <div class="card shadow-sm p-4">
+              <h4 class="mb-3 text-success"><i class="fas fa-id-badge me-2"></i>Your Profile</h4>
+              <div id="profileDetails"></div>
+            </div>
+          </div>
+
+          <!-- Update Profile -->
+          <div class="tab-pane fade" id="update">
+            <div class="card shadow-sm p-4">
+              <h4 class="mb-3 text-success"><i class="fas fa-user-edit me-2"></i>Update Profile</h4>
+              <form id="updateProfileForm" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Name</label>
+                  <input type="text" id="updName" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input type="email" id="updEmail" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Password</label>
+                  <input type="password" id="updPassword" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone</label>
+                  <input type="text" id="updPhone" class="form-control">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Specialization</label>
+                  <input type="text" id="updSpecialization" class="form-control" disabled>
+                </div>
+                <div class="col-12 d-grid">
+                  <button class="btn btn-success"><i class="fas fa-save me-2"></i>Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Time Slots -->
+          <div class="tab-pane fade" id="slots">
+            <div class="card shadow-sm p-4">
+              <h4 class="mb-3 text-success"><i class="fas fa-clock me-2"></i>Manage Time Slots</h4>
+              
+              <!-- Add Slot Form -->
+              <form id="addSlotForm" class="row g-3 mb-4">
+                <div class="col-md-4">
+                  <label class="form-label">Date</label>
+                  <input type="date" id="slotDate" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Start Time</label>
+                  <input type="time" id="startTime" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">End Time</label>
+                  <input type="time" id="endTime" class="form-control" required>
+                </div>
+                <div class="col-md-2 d-grid">
+                  <button type="submit" class="btn btn-primary mt-4"><i class="fas fa-plus me-1"></i>Add</button>
+                </div>
+              </form>
+
+              <!-- Time Slots List -->
+              <div class="row" id="timeSlotsList"></div>
+            </div>
+          </div>
+
+          <!-- Appointments -->
+          <div class="tab-pane fade" id="appointments">
+            <div class="card shadow-sm p-4">
+              <h4 class="mb-3 text-success"><i class="fas fa-calendar-check me-2"></i>All Appointments</h4>
+              <div class="row" id="appointmentsList"></div>
+            </div>
+          </div>
+
+          <!-- Delete Account -->
+          <div class="tab-pane fade" id="delete">
+            <div class="card shadow-sm p-4 text-center">
+              <h4 class="mb-3 text-danger"><i class="fas fa-trash-alt me-2"></i>Delete Account</h4>
+              <p>Once you delete your account, all your data will be permanently removed.</p>
+              <button class="btn btn-outline-danger" id="deleteAccountBtn"><i class="fas fa-trash me-2"></i>Delete My Account</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-3 text-center mt-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 HealthCare Pro. All rights reserved. | <i class="fas fa-heart text-danger"></i> Caring for Your Health</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+  // Get doctor data from localStorage
+  const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+
+  if (!loggedUser || loggedUser.userType !== 'doctor') {
+    window.location.href = '../login.html';
+  }
+
+  // Fill profile and stats
+  const profileDetails = document.getElementById("profileDetails");
+  const appointments = Array.isArray(loggedUser.appointments) ? loggedUser.appointments : [];
+  const slots = Array.isArray(loggedUser.doctorTimeSlots) ? loggedUser.doctorTimeSlots : [];
+
+  document.getElementById('appointmentCount').textContent = appointments.length;
+  document.getElementById('slotCount').textContent = slots.length;
+  document.getElementById('specializationDisplay').textContent = loggedUser.specialization || 'N/A';
+
+  profileDetails.innerHTML = `
+    <div class="row">
+      <div class="col-md-4 text-center mb-4">
+        <div class="card p-3">
+          <div class="avatar mx-auto mb-3" style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h5>${loggedUser.name}</h5>
+          <p class="text-muted">Doctor ID: ${loggedUser.doctorId}</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card p-3 h-100">
+              <h6 class="text-success"><i class="fas fa-envelope me-2"></i>Email</h6>
+              <p>${loggedUser.email}</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card p-3 h-100">
+              <h6 class="text-success"><i class="fas fa-phone me-2"></i>Phone</h6>
+              <p>${loggedUser.phone}</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card p-3 h-100">
+              <h6 class="text-success"><i class="fas fa-stethoscope me-2"></i>Specialization</h6>
+              <p>${loggedUser.specialization}</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card p-3 h-100">
+              <h6 class="text-success"><i class="fas fa-lock me-2"></i>Password</h6>
+              <p>••••••••</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Prefill update form
+  document.getElementById("updName").value = loggedUser.name;
+  document.getElementById("updEmail").value = loggedUser.email;
+  document.getElementById("updPhone").value = loggedUser.phone;
+  document.getElementById("updSpecialization").value = loggedUser.specialization;
+
+  // Render time slots from backend, filtered by doctorId
+  async function renderSlots() {
+    timeSlotsList.innerHTML = '<div class="col-12"><div class="text-center p-3"><i class="fas fa-spinner fa-spin fa-2x text-primary"></i><p class="mt-2">Loading time slots...</p></div></div>';
+    try {
+      const res = await fetch("http://localhost:9090/fetchAllTimeSlots");
+      if (!res.ok) throw new Error("Failed to fetch time slots");
+      const response = await res.json();
+      // Filter slots for this doctor
+      const slots = (response.data || []).filter(slot => slot.doctor.doctorId === loggedUser.doctorId);
+
+      if (slots.length > 0) {
+        timeSlotsList.innerHTML = "";
+        slots.forEach(slot => {
+          const col = document.createElement("div");
+          col.className = "col-md-6 col-lg-4 mb-3";
+          col.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center">
+                <i class="fas fa-calendar-alt fa-2x text-primary mb-3"></i>
+                <h6 class="card-title">${slot.slotDate}</h6>
+                <p class="card-text"><strong>Time:</strong> ${slot.startTime} - ${slot.endTime}</p>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-outline-danger btn-sm" onclick="deleteSlot(${slot.timeSlotId})"><i class="fas fa-trash me-1"></i>Delete</button>
+              </div>
+            </div>
+          `;
+          timeSlotsList.appendChild(col);
+        });
+      } else {
+        timeSlotsList.innerHTML = '<div class="col-12"><div class="card text-center p-4"><i class="fas fa-calendar-times fa-3x text-muted mb-3"></i><p class="text-muted">No time slots yet.</p></div></div>';
+      }
+    } catch (err) {
+      timeSlotsList.innerHTML = `<div class="col-12"><div class="card text-center p-4 border-danger"><i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i><p class="text-danger">${err.message}</p></div></div>`;
+    }
+  }
+  renderSlots();
+
+  // Render appointments for this doctor
+  async function renderAppointments() {
+    const appointmentsList = document.getElementById("appointmentsList");
+    appointmentsList.innerHTML = '<div class="col-12"><div class="text-center p-3"><i class="fas fa-spinner fa-spin fa-2x text-primary"></i><p class="mt-2">Loading appointments...</p></div></div>';
+    try {
+      const res = await fetch("http://localhost:9090/fetchAllAppointments");
+      if (!res.ok) throw new Error("Failed to fetch appointments");
+      const response = await res.json();
+      // Filter appointments for this doctor
+      const appointments = (response.data || []).filter(app => app.doctor && app.doctor.doctorId === loggedUser.doctorId);
+
+      if (appointments.length > 0) {
+        appointmentsList.innerHTML = "";
+        appointments.forEach(app => {
+          const col = document.createElement("div");
+          col.className = "col-md-6 col-lg-4 mb-3";
+          col.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-user-injured fa-2x text-info me-3"></i>
+                  <div>
+                    <h6 class="card-title mb-1">${app.patient ? app.patient.name : "N/A"}</h6>
+                    <small class="text-muted">${app.patient ? app.patient.email : "N/A"}</small>
+                  </div>
+                </div>
+                <p class="card-text mb-2"><i class="fas fa-calendar-day me-2"></i><strong>Date:</strong> ${app.appointmentDate}</p>
+                <p class="card-text mb-2"><i class="fas fa-clock me-2"></i><strong>Time:</strong> ${app.startTime} - ${app.endTime}</p>
+                <p class="card-text mb-0"><i class="fas fa-info-circle me-2"></i><strong>Status:</strong> <span class="badge bg-${getStatusBadgeClass(app.status)}">${app.status || "N/A"}</span></p>
+              </div>
+            </div>
+          `;
+          appointmentsList.appendChild(col);
+        });
+      } else {
+        appointmentsList.innerHTML = '<div class="col-12"><div class="card text-center p-4"><i class="fas fa-calendar-times fa-3x text-muted mb-3"></i><p class="text-muted">No appointments found.</p></div></div>';
+      }
+    } catch (err) {
+      appointmentsList.innerHTML = `<div class="col-12"><div class="card text-center p-4 border-danger"><i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i><p class="text-danger">${err.message}</p></div></div>`;
+    }
+  }
+
+  // Helper function for status badge class
+  function getStatusBadgeClass(status) {
+    switch (status?.toLowerCase()) {
+      case 'confirmed': return 'success';
+      case 'pending': return 'warning';
+      case 'cancelled': return 'danger';
+      default: return 'secondary';
+    }
+  }
+
+  function renderAppointmentsFromLocal() {
+    const appointmentsList = document.getElementById("appointmentsList");
+    const appointments = Array.isArray(loggedUser.appointments) ? loggedUser.appointments : [];
+
+    if (appointments.length > 0) {
+      appointmentsList.innerHTML = "";
+      appointments.forEach(app => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.innerHTML = `
+          <strong>Patient:</strong> ${app.patient ? app.patient.name : "N/A"}<br>
+          <strong>Date:</strong> ${app.doctorTimeSlots.slotDate || app.date}<br>
+          <strong>Time:</strong> ${app.doctorTimeSlots.startTime} - ${app.doctorTimeSlots.endTime}<br>
+          <strong>Status:</strong> ${app.status || "N/A"}
+        `;
+        appointmentsList.appendChild(li);
+      });
+    } else {
+      appointmentsList.innerHTML = "<li class='list-group-item'>No appointments found.</li>";
+    }
+  }
+
+  // Optionally, render appointments when the tab is shown
+  document.querySelector('a[href="#appointments"]').addEventListener('shown.bs.tab', renderAppointmentsFromLocal);
+
+  // Add new slot (API)
+  document.getElementById("addSlotForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const date = document.getElementById("slotDate").value;
+    let start = document.getElementById("startTime").value;
+    let end = document.getElementById("endTime").value;
+    if (start.length === 5) start += ":00";
+    if (end.length === 5) end += ":00";
+
+    const payload = {
+      doctor: { doctorId: loggedUser.doctorId },
+      slotDate: date,
+      startTime: start,
+      endTime: end
+    };
+
+    try {
+      const res = await fetch("http://localhost:9090/createTimeSlot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("Failed to create time slot");
+      const response = await res.json();
+      alert(response.message || "Time slot created successfully!");
+      renderSlots(); // Refresh list
+      e.target.reset();
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
+  });
+
+  // Delete slot (API)
+  async function deleteSlot(id) {
+    if (!confirm("Are you sure you want to delete this time slot?")) return;
+    try {
+      const res = await fetch(`http://localhost:9090/deleteTimeSlotById/${id}`, {
+        method: "DELETE"
+      });
+      if (!res.ok) throw new Error("Failed to delete time slot");
+      const response = await res.json();
+      alert(response.message || "Time slot deleted successfully!");
+      renderSlots(); // Refresh list
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
+  }
+  window.deleteSlot = deleteSlot;
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../index.html";
+  });
+
+  // Delete Account
+  document.getElementById("deleteAccountBtn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to delete your account?")) {
+      localStorage.clear();
+      alert("Account deleted successfully!");
+      window.location.href = "../index.html";
+    }
+  });
+
+  // Update doctor profile (API)
+  document.getElementById("updateProfileForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Collect updated data
+    const updatedDoctor = {
+      doctorId: loggedUser.doctorId,
+      name: document.getElementById("updName").value,
+      email: document.getElementById("updEmail").value,
+      password: document.getElementById("updPassword").value || loggedUser.password,
+      phone: document.getElementById("updPhone").value,
+      specialization: loggedUser.specialization // usually not editable
+    };
+
+    try {
+      const res = await fetch("http://localhost:9090/updateDoctor", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedDoctor)
+      });
+      if (!res.ok) throw new Error("Failed to update profile");
+      const response = await res.json();
+
+      // Update localStorage and UI
+      Object.assign(loggedUser, updatedDoctor);
+      localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+      profileDetails.innerHTML = `
+        <p><strong>ID:</strong> ${loggedUser.doctorId}</p>
+        <p><strong>Name:</strong> ${loggedUser.name}</p>
+        <p><strong>Email:</strong> ${loggedUser.email}</p>
+        <p><strong>Phone:</strong> ${loggedUser.phone}</p>
+        <p><strong>Specialization:</strong> ${loggedUser.specialization}</p>
+        <p><strong>Password:</strong> ${loggedUser.password}</p>
+        <p><strong>Number of Appointments:</strong> ${Array.isArray(loggedUser.appointments) ? loggedUser.appointments.length : 0}</p>
+        <p><strong>Number of Time Slots:</strong> ${Array.isArray(loggedUser.doctorTimeSlots) ? loggedUser.doctorTimeSlots.length : 0}</p>
+      `;
+      alert(response.message || "Profile updated successfully!");
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
+  });
+  </script>
+</body>
+</html>

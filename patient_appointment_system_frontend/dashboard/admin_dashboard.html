@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HealthCare Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border-right: 2px solid #e9ecef;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            padding-top: 70px;
+        }
+        .sidebar .nav-link {
+            color: #495057;
+            font-weight: 500;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+        .sidebar .nav-link.active {
+            background: linear-gradient(90deg, #198754 0%, #20c997 100%);
+            color: white !important;
+            box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3);
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        .mt-5 { margin-top: 5rem !important; }
+        .btn-success {
+            background: linear-gradient(90deg, #198754 0%, #20c997 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-success:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(25, 135, 84, 0.4);
+        }
+        .btn-outline-danger {
+            transition: all 0.3s ease;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+            transform: scale(1.05);
+        }
+        .list-group-item {
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .list-group-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+        }
+        footer {
+            background: linear-gradient(90deg, #343a40 0%, #495057 100%);
+            border-top: 1px solid #6c757d;
+        }
+        /* Enhanced Styles for System Logs */
+        .logs-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 0;
+            background-color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .logs-container ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .logs-container li {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+            transition: background-color 0.2s ease;
+        }
+        .logs-container li:hover {
+            background-color: #f0f0f0;
+        }
+        .logs-container li:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .logs-loading {
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .stats-card h5 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        .stats-card p {
+            margin: 0;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+            </a>
+            <div class="d-flex">
+                <button class="btn btn-outline-danger" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-3 col-lg-2 p-3 sidebar">
+                <h5 class="fw-bold mb-4 text-primary"><i class="fas fa-user-shield me-2"></i>Admin Dashboard</h5>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#profile"><i class="fas fa-id-card me-2"></i>Profile</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#manageDoctors"><i class="fas fa-user-md me-2"></i>Manage Doctors</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#managePatients"><i class="fas fa-user-injured me-2"></i>Manage Patients</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#systemLogs"><i class="fas fa-file-alt me-2"></i>System Logs</a>
+                    <a class="nav-link text-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" href="#delete"><i class="fas fa-trash-alt me-2"></i>Delete Account</a>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-lg-10 p-4 pt-5">
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active" id="profile">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="stats-card">
+                                    <i class="fas fa-users fa-2x mb-2"></i>
+                                    <h5 id="totalUsers">0</h5>
+                                    <p>Total Users</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stats-card">
+                                    <i class="fas fa-user-md fa-2x mb-2"></i>
+                                    <h5 id="totalDoctors">0</h5>
+                                    <p>Total Doctors</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stats-card">
+                                    <i class="fas fa-user-injured fa-2x mb-2"></i>
+                                    <h5 id="totalPatients">0</h5>
+                                    <p>Total Patients</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-sm p-4">
+                            <h4 class="mb-3 text-primary"><i class="fas fa-id-badge me-2"></i>Your Profile</h4>
+                            <div id="profileDetails">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="manageDoctors">
+                        <div class="card shadow-sm p-4">
+                            <h4 class="mb-3 text-primary"><i class="fas fa-user-md me-2"></i>Manage Doctors</h4>
+                            <form id="addDoctorForm" class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" id="doctorName" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" id="doctorEmail" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" id="doctorPhone" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="specialization" class="form-label">Specialization *</label>
+                                    <select class="form-select" id="doctorSpecialization" required>
+                                        <option value="">Select specialty</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="dermatology">Dermatology</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="oncology">Oncology</option>
+                                        <option value="general">General Medicine</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" id="doctorPassword" class="form-control" required>
+                                </div>
+                                <div class="col-12 d-grid">
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-plus me-2"></i>Add Doctor</button>
+                                </div>
+                            </form>
+                            <hr>
+                            <h5>Existing Doctors</h5>
+                            <div class="row" id="doctorsList">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="managePatients">
+                        <div class="card shadow-sm p-4">
+                            <h4 class="mb-3 text-primary"><i class="fas fa-user-injured me-2"></i>Manage Patients</h4>
+                            <form id="addPatientForm" class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" id="patientName" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" id="patientEmail" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" id="patientPhone" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">DOB</label>
+                                    <input type="date" id="patientDob" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" id="patientAddress" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" id="patientPassword" class="form-control" required>
+                                </div>
+                                <div class="col-12 d-grid">
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-plus me-2"></i>Add Patient</button>
+                                </div>
+                            </form>
+                            <hr>
+                            <h5>Existing Patients</h5>
+                            <div class="row" id="patientsList">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="systemLogs">
+                        <div class="card shadow-sm p-4">
+                            <h4 class="mb-3 text-primary"><i class="fas fa-file-alt me-2"></i>System Logs</h4>
+                            <div id="logsContainer" class="logs-container">
+                                <p id="logsLoadingStatus" class="logs-loading">Loading logs...</p>
+                                <div id="logsList" class="row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-3 text-center mt-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 HealthCare Pro. All rights reserved. | <i class="fas fa-heart text-danger"></i> Caring for Your Health</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="deleteAdminForm">
+                    <div class="modal-body">
+                        <p class="text-danger fw-bold">WARNING: This action is irreversible and will permanently delete your Admin account.</p>
+                        <div class="mb-3">
+                            <label for="adminDeleteEmail" class="form-label">Admin Email</label>
+                            <input type="email" class="form-control" id="adminDeleteEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminDeletePassword" class="form-label">Admin Password</label>
+                            <input type="password" class="form-control" id="adminDeletePassword" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger" id="deleteAdminBtn"><i class="fas fa-trash-alt me-2"></i>Delete My Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      
+            
+            // --- API Endpoints ---
+            const API_BASE = "http://localhost:9090";
+            const API_ENDPOINTS = {
+                REGISTER_DOCTOR: `${API_BASE}/registerDoctor`,
+                FETCH_ALL_DOCTORS: `${API_BASE}/fetchAllDoctors`,
+                REGISTER_PATIENT: `${API_BASE}/registerPatient`,
+                FETCH_ALL_PATIENTS: `${API_BASE}/fetchAllPatients`,
+                FETCH_SYSTEM_LOGS: `${API_BASE}/fetchSystemLogs`,
+                
+                // UPDATED: Deletion using Email in the URL Path
+                DELETE_DOCTOR: (email) => `${API_BASE}/deleteDoctor/${email}`,
+                DELETE_PATIENT: (email) => `${API_BASE}/deletePatient/${email}`,
+                DELETE_ADMIN: (email) => `${API_BASE}/deleteAdmin/${email}`,
+            };
+            // ----------------------
+
+            // Load admin data from localStorage
+            const loggedUserString = localStorage.getItem('loggedUser');
+            let admin = { name: "Guest Admin", email: "N/A", phone: "N/A", userType: "guest" };
+
+            if (loggedUserString) {
+                const loggedUser = JSON.parse(loggedUserString);
+                if (loggedUser.userType === 'admin') {
+                     admin = loggedUser;
+                }
+            }
+            
+            // Basic Security Check
+            if (admin.userType !== 'admin') {
+                alert("Access Denied. Please log in as an Admin.");
+                window.location.href = '../login.html';
+
+            }
+
+
+
+
+            // DOM Elements
+            const profileDetails = document.getElementById("profileDetails");
+            const logoutBtn = document.getElementById("logoutBtn");
+            const doctorsList = document.getElementById("doctorsList");
+            const patientsList = document.getElementById("patientsList");
+            
+            // UPDATED LOG ELEMENTS
+            // const logsTableBody = document.getElementById("logsTableBody"); // No longer used
+            const logsLoadingStatus = document.getElementById("logsLoadingStatus");
+            const logsList = document.getElementById("logsList");
+            // END UPDATED LOG ELEMENTS
+
+            const addDoctorForm = document.getElementById("addDoctorForm");
+            const addPatientForm = document.getElementById("addPatientForm");
+            const deleteAdminForm = document.getElementById("deleteAdminForm");
+            const adminDeleteEmailInput = document.getElementById("adminDeleteEmail");
+            
+            // Populate the delete email input with the current admin's email for convenience
+            if (adminDeleteEmailInput) {
+                adminDeleteEmailInput.value = admin.email || '';
+            }
+
+            // Clear password field when modal opens for security
+            const deleteModal = document.getElementById('deleteAccountModal');
+            if (deleteModal) {
+                deleteModal.addEventListener('show.bs.modal', () => {
+                    document.getElementById("adminDeletePassword").value = '';
+                });
+            }
+
+
+
+            // --- State ---
+            let doctors = [];
+            let patients = [];
+            // -----------------------------------------------------------
+
+            // Update stats cards
+            function updateStats() {
+                const totalUsers = doctors.length + patients.length;
+                document.getElementById('totalUsers').textContent = totalUsers;
+                document.getElementById('totalDoctors').textContent = doctors.length;
+                document.getElementById('totalPatients').textContent = patients.length;
+            }
+
+            // --- Helper Functions (Fetch/Post/Delete) ---
+
+            async function fetchData(url) {
+                try {
+                    const response = await fetch(url);
+                    console.log(response);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    // ASSUMPTION: The backend sends an object with a 'data' field containing the final payload (e.g., array of doctors or the log string)
+                    const json = await response.json();
+                    return json; 
+                } catch (error) {
+                    console.error("Fetch Error:", error);
+                    alert(`⚠️ Failed to fetch data from ${url}. See console for details.`);
+                    return null;
+                }
+            }
+
+            async function postData(url, data) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`HTTP error! Status: ${response.status}. Response: ${errorText.substring(0, 100)}...`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error("Post Error:", error);
+                    alert(`❌ Failed to submit data: ${error.message}`);
+                    return null;
+                }
+            }
+            
+            /**
+             * Handles DELETE requests. Can take optional body data for secure deletion (e.g., Admin).
+            
+         */
+            async function sendDeleteRequest(url, entityName, body = null) {
+                try {
+                    const options = {
+                        method: 'DELETE',
+                    };
+
+                    if (body) {
+                        options.headers = { 'Content-Type': 'application/json' };
+                        options.body = JSON.stringify(body);
+                    }
+
+                    const response = await fetch(url, options);
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`HTTP error! Status: ${response.status}. Response: ${errorText.substring(0, 100)}...`);
+                    }
+                    alert(`${entityName} deleted successfully!`);
+                    return true;
+                } catch (error) {
+                    console.error("Delete Error:", error);
+                    alert(`❌ Failed to delete ${entityName}: ${error.message}`);
+                    return false;
+                }
+            }
+
+
+            // --- Render & Load Functions ---
+
+            // Fill profile with logged-in admin data
+            if (profileDetails) {
+                profileDetails.innerHTML = `
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong><i class="fas fa-id-card me-2"></i>Admin ID:</strong> ${admin.adminId || 'N/A'}</p>
+                      <p><strong><i class="fas fa-user me-2"></i>Name:</strong> ${admin.name || 'N/A'}</p>
+                      <p><strong><i class="fas fa-envelope me-2"></i>Email:</strong> ${admin.email || 'N/A'}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong><i class="fas fa-phone me-2"></i>Phone:</strong> ${admin.phone || 'N/A'}</p>
+                      <p><strong><i class="fas fa-user-shield me-2"></i>Role:</strong> <span class="badge bg-success">${admin.role || 'ADMIN'}</span></p>
+                    </div>
+                  </div>
+                `;
+            }
+
+            function renderDoctors() {
+                if (!doctorsList) return;
+                doctorsList.innerHTML = "";
+                if (!doctors || doctors.length === 0) {
+                    doctorsList.innerHTML = '<div class="col-12"><div class="card text-center p-4"><i class="fas fa-user-md fa-3x text-muted mb-3"></i><p class="text-muted">No doctors registered yet.</p></div></div>';
+                    return;
+                }
+
+                doctors.forEach(d => {
+                    const appointmentCount = d.appointments ? d.appointments.length : 0;
+                    const slotCount = d.doctorTimeSlots ? d.doctorTimeSlots.length : 0;
+
+                    const col = document.createElement("div");
+                    col.className = "col-md-6 col-lg-4 mb-3";
+                    col.innerHTML = `
+                      <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                          <div class="avatar mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-user-md"></i>
+                          </div>
+                          <h6 class="card-title">${d.name || 'N/A'}</h6>
+                          <p class="card-text text-muted small">${d.email || 'N/A'}</p>
+                          <p class="card-text"><strong>Specialization:</strong> ${d.specialization || 'N/A'}</p>
+                          <div class="row text-center">
+                            <div class="col-6">
+                              <i class="fas fa-calendar-check text-success"></i>
+                              <small class="d-block">Appointments</small>
+                              <strong>${appointmentCount}</strong>
+                            </div>
+                            <div class="col-6">
+                              <i class="fas fa-clock text-info"></i>
+                              <small class="d-block">Slots</small>
+                              <strong>${slotCount}</strong>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer text-center">
+                          <button class="btn btn-outline-danger btn-sm" onclick="removeDoctor('${d.email}')"><i class="fas fa-trash me-1"></i>Delete</button>
+                        </div>
+                      </div>
+                    `;
+                    doctorsList.appendChild(col);
+                });
+            }
+
+            function renderPatients() {
+                if (!patientsList) return;
+                patientsList.innerHTML = "";
+                if (!patients || patients.length === 0) {
+                    patientsList.innerHTML = '<div class="col-12"><div class="card text-center p-4"><i class="fas fa-user-injured fa-3x text-muted mb-3"></i><p class="text-muted">No patients registered yet.</p></div></div>';
+                    return;
+                }
+
+                patients.forEach(p => {
+                    const appointmentCount = p.appointments ? p.appointments.length : 0;
+
+                    const col = document.createElement("div");
+                    col.className = "col-md-6 col-lg-4 mb-3";
+                    col.innerHTML = `
+                      <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                          <div class="avatar mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-user-injured"></i>
+                          </div>
+                          <h6 class="card-title">${p.name || 'N/A'}</h6>
+                          <p class="card-text text-muted small">${p.email || 'N/A'}</p>
+                          <p class="card-text"><strong>Phone:</strong> ${p.phone || 'N/A'}</p>
+                          <div class="row text-center">
+                            <div class="col-12">
+                              <i class="fas fa-calendar-check text-success"></i>
+                              <small class="d-block">Appointments</small>
+                              <strong>${appointmentCount}</strong>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer text-center">
+                          <button class="btn btn-outline-danger btn-sm" onclick="removePatient('${p.email}')"><i class="fas fa-trash me-1"></i>Delete</button>
+                        </div>
+                      </div>
+                    `;
+                    patientsList.appendChild(col);
+                });
+            }
+
+            async function loadAllDoctors() {
+                if (!doctorsList) return;
+                doctorsList.innerHTML = `<li class="list-group-item text-center text-info"><i class="fas fa-spinner fa-spin me-2"></i>Loading doctors...</li>`;
+                const response = await fetchData(API_ENDPOINTS.FETCH_ALL_DOCTORS);
+                // Check if the response structure matches for this endpoint (array in 'data' field)
+                const data = response && Array.isArray(response.data) ? response.data : [];
+                doctors = data;
+                renderDoctors();
+                updateStats();
+            }
+
+            async function loadAllPatients() {
+                if (!patientsList) return;
+                patientsList.innerHTML = `<li class="list-group-item text-center text-info"><i class="fas fa-spinner fa-spin me-2"></i>Loading patients...</li>`;
+                const response = await fetchData(API_ENDPOINTS.FETCH_ALL_PATIENTS);
+                console.log(response);
+                const data = response && Array.isArray(response.data) ? response.data : [];
+                patients = data;
+                renderPatients();
+                updateStats();
+            }
+
+            /**
+             * NEW: Load system logs, parse structured format, and render row-wise in #logsList.
+             * Updated to handle both \n and \r\n, log API responses, and render all lines even if parsing fails.
+             */
+            async function loadSystemLogs() {
+                if (!logsList) return;
+
+                logsList.innerHTML = '';
+                logsLoadingStatus.textContent = "Fetching system logs...";
+                logsLoadingStatus.style.display = 'block';
+
+                const responseData = await fetchData(API_ENDPOINTS.FETCH_SYSTEM_LOGS);
+                console.log("📜 Logs API Response:", responseData);
+
+                // Determine where the logs are located in the response
+                const logsString =
+                    typeof responseData === "string"
+                        ? responseData
+                        : responseData?.data || responseData?.logs || "";
+
+                if (!logsString || logsString.trim().length === 0) {
+                    logsLoadingStatus.textContent = "No logs found";
+                    logsList.innerHTML = '';
+                    return;
+                }
+
+                // Split logs safely (handle both \n and \r\n)
+                const logEntries = logsString.split(/\r?\n/).filter(line => line.trim().length > 0);
+
+                if (logEntries.length === 0) {
+                    logsLoadingStatus.textContent = "No valid log entries";
+                    logsList.innerHTML = '';
+                    return;
+                }
+
+                logsLoadingStatus.style.display = 'none';
+
+                // Parse and render each log row
+                logEntries.forEach(line => {
+                    const parsedLog = parseLogEntry(line.trim());
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'log-entry border-bottom py-2 px-3 d-flex align-items-center flex-wrap';
+                    if (parsedLog) {
+                        entryDiv.innerHTML = `
+                            <span class="text-muted small">[${parsedLog.timestamp}]</span>
+                            <span class="badge bg-${getLevelBadgeClass(parsedLog.level)} ms-2">${parsedLog.level}</span>
+                            <span class="ms-2 flex-grow-1">${parsedLog.message}</span>
+                        `;
+                    } else {
+                        // fallback if regex doesn't match
+                        entryDiv.textContent = line;
+                    }
+                    logsList.appendChild(entryDiv);
+                });
+            }
+
+            /**
+             * Parse a log entry using simplified regex: extract timestamp, level, and message only.
+             */
+            function parseLogEntry(logLine) {
+                // Simplified regex: extract timestamp, level, and message only
+                const regex = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}:\d{2})\s+(\w+)\s+\d+\s+---\s+\[[^\]]+\]\s+(?:\[[^\]]+\]\s+)?[^:]+:\s+(.+)$/;
+                const match = logLine.match(regex);
+                if (match) {
+                    return {
+                        timestamp: match[1],
+                        level: match[2],
+                        message: match[3]
+                    };
+                }
+                return null; // Ignore malformed lines
+            }
+
+            /**
+             * Get Bootstrap badge class based on log level.
+             */
+            function getLevelBadgeClass(level) {
+                switch (level.toUpperCase()) {
+                    case 'INFO': return 'success';
+                    case 'WARN': return 'warning';
+                    case 'ERROR': return 'danger';
+                    case 'DEBUG': return 'info';
+                    default: return 'secondary';
+                }
+            }
+            // Expose functions globally for onclick in the rendered list items
+            // UPDATED: Accepting email instead of id
+            window.removeDoctor = async function(email) {
+                if(confirm(`Are you sure you want to delete Doctor with email: ${email}?`)) {
+                    if(await sendDeleteRequest(API_ENDPOINTS.DELETE_DOCTOR(email), `Doctor Email ${email}`)) {
+                        loadAllDoctors();
+                        updateStats();
+                    }
+                }
+            }
+            // UPDATED: Accepting email instead of id
+            window.removePatient = async function(email) {
+                if(confirm(`Are you sure you want to delete Patient with email: ${email}?`)) {
+                    if(await sendDeleteRequest(API_ENDPOINTS.DELETE_PATIENT(email), `Patient Email ${email}`)) {
+                        loadAllPatients();
+                        updateStats();
+                    }
+                }
+            }
+
+
+            // --- Form Submission Handlers and Event Listeners ---
+
+            if (addDoctorForm) {
+                addDoctorForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    
+                    const newDoctor = {
+                        name: document.getElementById("doctorName").value,
+                        email: document.getElementById("doctorEmail").value,
+                        phone: document.getElementById("doctorPhone").value,
+                        specialization: document.getElementById("doctorSpecialization").value,
+                        password: document.getElementById("doctorPassword").value,
+                    };
+                    const result = await postData(API_ENDPOINTS.REGISTER_DOCTOR, newDoctor);
+                    if (result) {
+                        alert(`✅ Doctor ${newDoctor.name} registered successfully!`);
+                        addDoctorForm.reset();
+                        loadAllDoctors();
+                        updateStats();
+                    }
+                });
+            }
+
+            if (addPatientForm) {
+                addPatientForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    const newPatient = {
+                        name: document.getElementById("patientName").value,
+                        email: document.getElementById("patientEmail").value,
+                        phone: document.getElementById("patientPhone").value,
+                        dob: document.getElementById("patientDob").value,
+                        address: document.getElementById("patientAddress").value,
+                        password: document.getElementById("patientPassword").value,
+                    };
+
+                    const result = await postData(API_ENDPOINTS.REGISTER_PATIENT, newPatient);
+                    if (result) {
+                        alert(`✅ Patient ${newPatient.name} registered successfully!`);
+                        addPatientForm.reset();
+                        loadAllPatients();
+                        updateStats();
+                    }
+                });
+            }
+            
+            // Secure Admin Delete Handler
+            // Secure Admin Delete Handler
+if (deleteAdminForm) {
+    deleteAdminForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("adminDeleteEmail").value;
+        const password = document.getElementById("adminDeletePassword").value;
+
+        if (email !== admin.email) {
+            alert("Error: The email entered does not match the logged-in admin's email. Please try again.");
+            return;
+        }
+
+        try {
+
+            const response = await fetch(API_ENDPOINTS.DELETE_ADMIN(email), { 
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}. Response: ${errorText.substring(0, 100)}...`);
+            }
+
+            alert(`Admin Account for ${email} deleted successfully!`);
+
+            const modalElement = document.getElementById('deleteAccountModal');
+            const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+            if (modal) modal.hide();
+
+            localStorage.clear();
+            window.location.href = "../index.html";
+        } catch (error) {
+            console.error("Delete Error:", error);
+            alert(`❌ Failed to delete Admin Account: ${error.message}`);
+        }
+    });
+}
+
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", () => {
+                    if(confirm("Are you sure you want to log out?")) {
+                      localStorage.clear();
+                      window.location.href = "../index.html";
+                    }
+                });
+            }
+            
+            // --- Initial Load & Tab Handlers ---
+
+            loadAllDoctors();
+            loadAllPatients();
+
+            document.querySelector('a[href="#manageDoctors"]').addEventListener('click', loadAllDoctors);
+            document.querySelector('a[href="#managePatients"]').addEventListener('click', loadAllPatients);
+            // Load logs only when the tab is clicked, not on initial page load
+            document.querySelector('a[href="#systemLogs"]').addEventListener('click', loadSystemLogs);
+            
+    </script>
+</body>
+</html>

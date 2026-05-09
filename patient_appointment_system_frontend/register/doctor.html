@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Registration - HealthCare Pro</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../CSS/style.css" rel="stylesheet">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    footer {
+        border-top: 1px solid #ddd;
+    }
+</style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="../index.html" style="font-size: 1.5rem;">
+            <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+        </a>
+        <div class="d-flex gap-2">
+            <a href="../register.html" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back
+            </a>
+            <a href="../login.html" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-1"></i>Login
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <div class="bg-success bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                    <i class="fas fa-user-md text-white" style="font-size: 2rem;"></i>
+                </div>
+                <h1 class="h2 fw-bold text-dark">Doctor Registration</h1>
+                <p class="text-muted">Apply to join our network of healthcare professionals</p>
+            </div>
+
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <form id="doctorRegistrationForm">
+
+                        <div class="mb-3">
+                            <label for="doctorId" class="form-label">Doctor ID (PK)</label>
+                            <input type="text" class="form-control" id="doctorId" placeholder="System-generated ID" disabled>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-success mb-3"><i class="fas fa-user me-2"></i>Personal & Professional Information</h5>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="specialization" class="form-label">Specialization *</label>
+                                    <select class="form-select" id="specialization" required>
+                                        <option value="">Select specialty</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="dermatology">Dermatology</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="oncology">Oncology</option>
+                                        <option value="general">General Medicine</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your professional email" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="phone" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-success mb-3"><i class="fas fa-shield-alt me-2"></i>Account Security</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                I agree to the <a href="#" class="text-decoration-none">Terms & Conditions</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>.
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">
+                    Already a member? <a href="../login.html" class="text-decoration-none fw-bold">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-white text-center py-3 mt-5 border-top">
+    <p class="mb-0 text-muted">&copy; 2025 HealthCare Pro. All rights reserved.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('doctorRegistrationForm').addEventListener('submit',async function(event) {
+        event.preventDefault();
+
+        const doctorData = {
+            name: document.getElementById('name').value.trim(),
+            specialization: document.getElementById('specialization').value,
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            password: document.getElementById('password').value
+        };
+
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+        const termsAccepted = document.getElementById('terms').checked;
+
+        // 🧩 Validation
+        if (doctorData.password !== confirmPassword) {
+            alert('❌ Passwords do not match!');
+            return;
+        }
+
+        if (!termsAccepted) {
+            alert('⚠️ You must agree to the Terms & Conditions.');
+            return;
+        }
+
+        console.log('Collected Doctor Data:', doctorData);
+
+        // ✅ Send data to backend
+        fetch('http://localhost:9090/registerDoctor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(doctorData)
+        })
+        .then(response => {
+            // 1. Check if the response is OK (status 200-299)
+            if (response.ok) {
+                // For successful responses, proceed to read the JSON body
+                return response.json(); 
+            } else {
+                // For error responses (e.g., 400, 500), 
+                // read the JSON body to get the error message, 
+                // then throw an error to jump to the .catch() block.
+                return response.json().then(errorData => {
+                    // Include the specific error message from the backend in the thrown error
+                    throw new Error(errorData.message || 'Registration failed with status: ' + response.status);
+                });
+            }
+        })
+        .then(data => {
+            // This block is for successful registration (response.ok was true)
+            console.log('Server Response (Success):', data);
+
+            // Get the message from the successful data object
+            const successMessage = data.message || 'Registration successful!';
+
+            // ✅ Save to localStorage
+            localStorage.setItem('doctor', JSON.stringify(data.data)); // Use data.data for the doctor object
+
+            // ✅ Browser popup
+            alert(`🎉 ${successMessage}\nRedirecting to login page...`);
+
+            // ✅ Reset form
+            document.getElementById('doctorRegistrationForm').reset();
+
+            // ✅ Redirect to login
+            window.location.href = '../login.html';
+        })
+        .catch(error => {
+            // This block catches network errors OR the specific error thrown above
+            console.error('Error:', error.message);
+            
+            // Display the specific error message from the backend or a generic fallback
+            alert(`❌ ${error.message}`); 
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+2025-10-28T10:26:35.602+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : Starting PamsBackedSpringApplication using Java 24.0.1 with PID 9700 (C:\Users\2442603\OneDrive - Cognizant\Desktop\project\pams_backend\target\classes started by 2442603 in C:\Users\2442603\OneDrive - Cognizant\Desktop\project\pams_backend)
+2025-10-28T10:26:35.615+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-10-28T10:26:35.688+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-10-28T10:26:35.689+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-10-28T10:26:36.756+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-28T10:26:36.889+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 5 JPA repository interfaces.
+2025-10-28T10:26:37.784+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2025-10-28T10:26:37.814+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-28T10:26:37.815+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-28T10:26:37.863+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-28T10:26:37.864+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2174 ms
+2025-10-28T10:26:38.167+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-28T10:26:38.235+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-10-28T10:26:38.292+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-28T10:26:38.690+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-28T10:26:38.738+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-28T10:26:39.310+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@418154fc
+2025-10-28T10:26:39.312+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-28T10:26:39.475+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-28T10:26:40.522+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-28T10:26:40.664+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-28T10:26:41.353+05:30  WARN 9700 --- [pams_backend_spring] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-28T10:26:41.925+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-28T10:26:41.979+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9090 (http) with context path '/'
+2025-10-28T10:26:41.990+05:30  INFO 9700 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : Started PamsBackedSpringApplication in 7.058 seconds (process running for 7.693)
+2025-10-28T10:27:32.781+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-28T10:27:32.781+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-28T10:27:32.783+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-10-28T10:27:33.050+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Attempting login for admin email: kartikey@gmail.com
+2025-10-28T10:27:33.381+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Admin successfully logged in: kartikey@gmail.com
+2025-10-28T10:27:35.530+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-3] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T10:27:35.563+05:30  INFO 9700 --- [pams_backend_spring] [http-nio-9090-exec-3] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 3
+2025-10-28T11:09:39.392+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m29s756ms101µs800ns).
+2025-10-28T12:04:37.744+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=38m58s311ms554µs800ns).
+2025-10-28T12:05:56.557+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m18s812ms988µs700ns).
+2025-10-28T12:08:04.634+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m38s71ms470µs900ns).
+2025-10-28T12:19:27.929+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m53s205ms733µs400ns).
+2025-10-28T13:40:16.262+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m18s121ms426µs500ns).
+2025-10-28T13:51:35.355+05:30  WARN 9700 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m18s983ms4µs300ns).
+2025-10-28T14:04:59.697+05:30  INFO 9700 --- [pams_backend_spring] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-28T14:04:59.721+05:30  INFO 9700 --- [pams_backend_spring] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-28T14:04:59.739+05:30  INFO 9700 --- [pams_backend_spring] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-28T14:04:59.761+05:30  INFO 9700 --- [pams_backend_spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-10-28T14:04:59.770+05:30  INFO 9700 --- [pams_backend_spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-10-28T14:05:04.195+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : Starting PamsBackedSpringApplication using Java 24.0.1 with PID 9480 (C:\Users\2442603\OneDrive - Cognizant\Desktop\project\pams_backend\target\classes started by 2442603 in C:\Users\2442603\OneDrive - Cognizant\Desktop\project\pams_backend)
+2025-10-28T14:05:04.199+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-10-28T14:05:04.335+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-10-28T14:05:04.336+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-10-28T14:05:06.135+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-28T14:05:06.361+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 207 ms. Found 5 JPA repository interfaces.
+2025-10-28T14:05:07.609+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2025-10-28T14:05:07.636+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-28T14:05:07.636+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-28T14:05:07.726+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-28T14:05:07.727+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3389 ms
+2025-10-28T14:05:08.202+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-28T14:05:08.375+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-10-28T14:05:08.484+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-28T14:05:09.082+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-28T14:05:09.130+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-28T14:05:09.933+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1807e1fd
+2025-10-28T14:05:09.938+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-28T14:05:10.226+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-28T14:05:12.093+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-28T14:05:12.283+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-28T14:05:13.050+05:30  WARN 9480 --- [pams_backend_spring] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-28T14:05:13.786+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-28T14:05:13.857+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9090 (http) with context path '/'
+2025-10-28T14:05:13.877+05:30  INFO 9480 --- [pams_backend_spring] [restartedMain] com.pams.PamsBackedSpringApplication     : Started PamsBackedSpringApplication in 10.98 seconds (process running for 11.826)
+2025-10-28T14:05:27.795+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-28T14:05:27.795+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-28T14:05:27.795+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-10-28T14:05:28.085+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] c.p.a.s.serviceImpl.AdminServiceImpl     : Attempting login for admin email: kartikey@gmail.com
+2025-10-28T14:05:28.486+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] c.p.a.s.serviceImpl.AdminServiceImpl     : Admin successfully logged in: kartikey@gmail.com
+2025-10-28T14:05:30.260+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:05:30.322+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 3
+2025-10-28T14:05:31.592+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-4] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:05:31.602+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-4] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 3
+2025-10-28T14:06:00.681+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : Attempting to register new doctor with email: ritesh@gmail.com
+2025-10-28T14:06:00.853+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : Doctor registered successfully. Doctor ID: 4
+2025-10-28T14:06:03.208+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:06:03.220+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:06:31.435+05:30  WARN 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> com.pams.patient.controller.PatientController.registerPatient(com.pams.patient.dto.PatientDTO): [Field error in object 'patientDTO' on field 'password': rejected value [kartikey11.]; codes [Pattern.patientDTO.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientDTO.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@f6f7de3,^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$]; default message [Password must contain uppercase, lowercase, digit, and special character]] ]
+2025-10-28T14:06:41.694+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.p.s.serviceImpl.PatientServiceImpl   : Attempting to delete patient by email: zayed@gmail.com
+2025-10-28T14:06:41.754+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.p.s.serviceImpl.PatientServiceImpl   : Patient successfully deleted with ID: 2 and email: zayed@gmail.com
+2025-10-28T14:06:45.857+05:30  WARN 9480 --- [pams_backend_spring] [http-nio-9090-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> com.pams.patient.controller.PatientController.registerPatient(com.pams.patient.dto.PatientDTO): [Field error in object 'patientDTO' on field 'password': rejected value [kartikey11.]; codes [Pattern.patientDTO.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientDTO.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@f6f7de3,^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$]; default message [Password must contain uppercase, lowercase, digit, and special character]] ]
+2025-10-28T14:07:02.886+05:30  WARN 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> com.pams.patient.controller.PatientController.registerPatient(com.pams.patient.dto.PatientDTO): [Field error in object 'patientDTO' on field 'password': rejected value [K@rtikey11.]; codes [Pattern.patientDTO.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientDTO.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@f6f7de3,^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$]; default message [Password must contain uppercase, lowercase, digit, and special character]] ]
+2025-10-28T14:07:13.323+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.p.s.serviceImpl.PatientServiceImpl   : Attempting to register new patient with email: somen@gmail.com
+2025-10-28T14:07:13.419+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.p.s.serviceImpl.PatientServiceImpl   : Successfully registered patient with ID: 6 and email: somen@gmail.com
+2025-10-28T14:07:35.785+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-10] c.p.p.s.serviceImpl.PatientServiceImpl   : Attempting to delete patient by email: somen@gmail.com
+2025-10-28T14:07:35.802+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-10] c.p.p.s.serviceImpl.PatientServiceImpl   : Patient successfully deleted with ID: 6 and email: somen@gmail.com
+2025-10-28T14:07:39.319+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-3] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:07:39.319+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-3] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:07:49.652+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Reading system logs from file path: logs/app.log
+2025-10-28T14:07:49.653+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Successfully read log file. Size: 21414 characters.
+2025-10-28T14:12:24.139+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m13s998ms877µs400ns).
+2025-10-28T14:27:49.295+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m25s149ms357µs400ns).
+2025-10-28T14:30:54.643+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.a.s.serviceImpl.AdminServiceImpl     : Attempting to register new admin with email: ritesh@gmail.com
+2025-10-28T14:30:54.739+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.a.s.serviceImpl.AdminServiceImpl     : Admin created successfully with ID: 8
+2025-10-28T14:31:25.296+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.a.s.serviceImpl.AdminServiceImpl     : Attempting login for admin email: ritesh@gmail.com
+2025-10-28T14:31:25.395+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-7] c.p.a.s.serviceImpl.AdminServiceImpl     : Admin successfully logged in: ritesh@gmail.com
+2025-10-28T14:31:28.362+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-8] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:31:28.371+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-8] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:34:43.860+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:34:43.880+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:34:48.027+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-5] c.p.a.s.serviceImpl.AdminServiceImpl     : Reading system logs from file path: logs/app.log
+2025-10-28T14:34:48.029+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-5] c.p.a.s.serviceImpl.AdminServiceImpl     : Successfully read log file. Size: 23704 characters.
+2025-10-28T14:34:49.299+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:34:49.306+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:36:43.489+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-8] c.p.a.s.serviceImpl.AdminServiceImpl     : Reading system logs from file path: logs/app.log
+2025-10-28T14:36:43.490+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-8] c.p.a.s.serviceImpl.AdminServiceImpl     : Successfully read log file. Size: 24430 characters.
+2025-10-28T14:36:46.713+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-10] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:36:46.718+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-10] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:36:52.089+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:36:52.093+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-1] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:36:54.158+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Reading system logs from file path: logs/app.log
+2025-10-28T14:36:54.160+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-2] c.p.a.s.serviceImpl.AdminServiceImpl     : Successfully read log file. Size: 25515 characters.
+2025-10-28T14:37:14.515+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-4] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:37:14.520+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-4] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:39:02.766+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : Fetching all doctors from the database.
+2025-10-28T14:39:02.773+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-6] c.p.doctor.services.DoctorServiceImpl    : All doctors fetched successfully. Total count: 4
+2025-10-28T14:39:18.418+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-9] c.p.a.s.serviceImpl.AdminServiceImpl     : Reading system logs from file path: logs/app.log
+2025-10-28T14:39:18.421+05:30  INFO 9480 --- [pams_backend_spring] [http-nio-9090-exec-9] c.p.a.s.serviceImpl.AdminServiceImpl     : Successfully read log file. Size: 26598 characters.
+2025-10-28T15:33:14.839+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=43m25s507ms98µs100ns).
+2025-10-28T16:14:52.406+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=41m37s565ms777µs100ns).
+2025-10-28T16:23:08.241+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s740ms923µs100ns).
+2025-10-28T17:06:40.913+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m32s300ms687µs900ns).
+2025-10-28T17:08:04.003+05:30  WARN 9480 --- [pams_backend_spring] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m23s87ms951µs400ns).
+2025-10-28T17:12:35.768+05:30  INFO 9480 --- [pams_backend_spring] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-28T17:12:35.797+05:30  INFO 9480 --- [pams_backend_spring] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-28T17:12:35.826+05:30  INFO 9480 --- [pams_backend_spring] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-28T17:12:35.854+05:30  INFO 9480 --- [pams_backend_spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-10-28T17:12:35.864+05:30  INFO 9480 --- [pams_backend_spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

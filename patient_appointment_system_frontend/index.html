@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Pro - Your Health, Our Priority</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#" style="font-size: 1.5rem;">
+                <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-2" id="authButtons">
+                    <!-- Dynamic buttons will be inserted here -->
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold text-dark mb-4">
+                            Your Health, <span class="text-primary">Our Priority</span>
+                        </h1>
+                        <p class="lead text-muted mb-4">
+                            Book appointments with trusted healthcare professionals. Easy scheduling, secure records, and quality care - all in one platform.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="#" id="bookAppointmentBtn" class="btn btn-primary btn-lg px-4">
+                                <i class="fas fa-calendar-plus me-2"></i>Book Appointment
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="hero-image text-center">
+                        <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 300px; height: 300px;">
+                            <i class="fas fa-heartbeat text-white" style="font-size: 6rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services, About, Contact sections remain unchanged -->
+     <!-- Services Section -->
+    <section id="services" class="py-14 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Our Services</h2>
+                <p class="lead text-muted">Comprehensive healthcare solutions at your fingertips</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-calendar-check text-white" style="font-size: 2rem;"></i>
+                            </div>
+                            <h5 class="card-title">Easy Booking</h5>
+                            <p class="card-text text-muted">Schedule appointments with your preferred doctors in just a few clicks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-success bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-shield-alt text-white" style="font-size: 2rem;"></i>
+                            </div>
+                            <h5 class="card-title">Secure Records</h5>
+                            <p class="card-text text-muted">Your medical records are encrypted and securely stored with HIPAA compliance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-info bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-clock text-white" style="font-size: 2rem;"></i>
+                            </div>
+                            <h5 class="card-title">24/7 Support</h5>
+                            <p class="card-text text-muted">Round-the-clock customer support to assist you with any queries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-10 text-center">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-4">About HealthCare Pro</h2>
+            <p class="lead text-muted mb-5 col-lg-8 mx-auto">
+                We're revolutionizing healthcare access by connecting patients with qualified healthcare professionals through our innovative appointment booking system.
+            </p>
+            <div class="card bg-white p-4 shadow-lg rounded-3 mb-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/600x400.png?text=Our+Team" class="img-fluid rounded-3" alt="A team of healthcare professionals working together.">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <h3 class="text-primary fw-bold">500+</h3>
+                                <p class="text-muted mb-0">Doctors</p>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="text-primary fw-bold">10k+</h3>
+                                <p class="text-muted mb-0">Patients</p>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="text-primary fw-bold">50k+</h3>
+                                <p class="text-muted mb-0">Appointments</p>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="text-primary fw-bold">24/7</h3>
+                                <p class="text-muted mb-0">Support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-lg">Contact Us to Learn More</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-10 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-4">Ready to Get Started?</h2>
+                    <p class="lead mb-4">
+                        Join thousands of patients who trust HealthCare Pro for their healthcare needs.
+                    </p>
+                    <a href="register.html" class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-rocket me-2"></i>Get Started Today
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold"><i class="fas fa-heartbeat me-2 text-white"></i>HealthCare Pro</h5>
+                    <p class="text-white">Your trusted healthcare appointment system, built with professionalism and care.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
+                    <ul class="list-unstyled text-white">
+                        <li class="mb-2"><a href="#home" class="text-decoration-none text-white">Home</a></li>
+                        <li class="mb-2"><a href="#services" class="text-decoration-none text-white">Services</a></li>
+                        <li class="mb-2"><a href="#about" class="text-decoration-none text-white">About Us</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-decoration-none text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Contact Us</h6>
+                    <ul class="list-unstyled text-white">
+                        <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i><span class="text-white">info@healthcarepro.com</span></li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2 text-primary"></i><span class="text-white">(123) 456-7890</span></li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i><span class="text-white">123 Health St, City, Country</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Follow Us</h6>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="border-secondary mt-0">
+            <div class="row">
+                <div class="col-12 text-center text-white">
+                    <p class="mb-0">&copy; 2024 HealthCare Pro. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const user = JSON.parse(localStorage.getItem("loggedUser"));
+      const authButtons = document.getElementById("authButtons");
+      const bookBtn = document.getElementById("bookAppointmentBtn");
+      console.log(user)
+
+      // Set dynamic dashboard/logout buttons
+      if (user) {
+        let dashboardPage;
+        if (user.userType === "patient") dashboardPage = "dashboard/patient_dashboard.html";
+        if (user.userType === "doctor") dashboardPage = "dashboard/doctor_dashboard.html";
+        if (user.userType === "admin") dashboardPage = "dashboard/admin_dashboard.html";
+
+        authButtons.innerHTML = `
+          <a href="${dashboardPage}" class="btn btn-outline-success">
+            <i class="fas fa-columns me-1"></i>Dashboard
+          </a>
+          <button class="btn btn-danger" id="logoutBtn">
+            <i class="fas fa-sign-out-alt me-1"></i>Logout
+          </button>
+        `;
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("loggedUser");
+          window.location.href = "login.html";
+        });
+
+        // Book Appointment button directs to book_appointment.html only if patient
+        bookBtn.addEventListener("click", () => {
+          if (user.userType === "PATIENT") {
+            window.location.href = "book_appointment.html";
+          } else {
+            alert("Only patients can book appointments!");
+          }
+        });
+
+      } else {
+        localStorage.clear();
+        // Not logged in: show login/register buttons
+        authButtons.innerHTML = `
+          <a href="login.html" class="btn btn-outline-primary">
+            <i class="fas fa-sign-in-alt me-1"></i>Login
+          </a>
+          <a href="register.html" class="btn btn-primary">
+            <i class="fas fa-user-plus me-1"></i>Sign Up
+          </a>
+        `;
+
+    
+      }
+    </script>
+</body>
+</html>

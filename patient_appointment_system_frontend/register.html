@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - HealthCare Pro</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="CSS/style.css" rel="stylesheet">
+<style>
+    /* New CSS for Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    /* Existing CSS for cards */
+    .registration-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    .registration-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    .bg-gradient {
+        background: linear-gradient(45deg, var(--bs-primary), var(--bs-primary-dark)) !important;
+    }
+</style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html" style="font-size: 1.5rem;">
+            <i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+        </a>
+        <div class="d-flex gap-2">
+            <a href="index.html" class="btn btn-outline-secondary">
+                <i class="fas fa-home me-1"></i>Home
+            </a>
+            <a href="login.html" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-1"></i>Login
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3 fade-in-up" style="width: 80px; height: 80px; animation-delay: 0.2s;">
+                    <i class="fas fa-user-plus text-black" style="font-size: 2rem;"></i>
+                </div>
+                <h1 class="display-5 fw-bold text-dark fade-in-up" style="animation-delay: 0.4s;">Join HealthCare Pro</h1>
+                <p class="lead text-muted fade-in-up" style="animation-delay: 0.6s;">Choose your account type to get started</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-lg border-0 registration-card fade-in-up" data-type="patient" style="animation-delay: 0.8s;">
+                        <div class="card-body p-5 text-center">
+                            <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 100px; height: 100px;">
+                                <i class="fas fa-user-injured text-white" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3 class="card-title fw-bold text-dark mb-3">Register as Patient</h3>
+                            <div class="text-start mb-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Book appointments with doctors</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>View appointment history</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Manage your health records</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Receive notifications</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>24/7 customer support</span>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" onclick="selectRegistrationType('patient')">
+                                    <i class="fas fa-user-plus me-2"></i>Register as Patient
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-lg border-0 registration-card fade-in-up" data-type="doctor" style="animation-delay: 1s;">
+                        <div class="card-body p-5 text-center">
+                            <div class="bg-success bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 100px; height: 100px;">
+                                <i class="fas fa-user-md text-white" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3 class="card-title fw-bold text-dark mb-3">Register as Doctor</h3>
+                            <div class="text-start mb-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Manage patient appointments</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Set your availability</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>View patient records</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Professional dashboard</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Admin verification required</span>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-success btn-lg" onclick="selectRegistrationType('doctor')">
+                                    <i class="fas fa-stethoscope me-2"></i>Register as Doctor
+                                </button>
+                            </div>
+                            <div class="mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Doctor registration requires admin approval
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 bg-primary text-white fade-in-up" style="animation-delay: 1.2s;">
+                        <div class="card-body p-4 text-center">
+                            <h5 class="card-title mb-3">
+                                <i class="fas fa-shield-alt me-2"></i>Secure & Confidential
+                            </h5>
+                            <p class="card-text">
+                                Your personal and medical information is protected with industry-standard encryption 
+                                and follows HIPAA compliance guidelines. We prioritize your privacy and security.
+                            </p>
+                            <div class="row mt-4">
+                                <div class="col-md-4 text-center">
+                                    <i class="fas fa-lock mb-2" style="font-size: 2rem;"></i>
+                                    <div>Encrypted Data</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <i class="fas fa-user-shield mb-2" style="font-size: 2rem;"></i>
+                                    <div>HIPAA Compliant</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <i class="fas fa-clock mb-2" style="font-size: 2rem;"></i>
+                                    <div>24/7 Security</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="text-center mt-4 fade-in-up" style="animation-delay: 1.4s;">
+                <p class="text-muted">
+                    Already have an account? 
+                    <a href="login.html" class="text-decoration-none fw-bold">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    function selectRegistrationType(type) {
+        if (type === 'patient') {
+            window.location.href = 'register/patient.html';
+        } else if (type === 'doctor') {
+            window.location.href = 'register/doctor.html';
+        }
+    }
+    // Add hover effects to registration cards
+    document.querySelectorAll('.registration-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+    });
+</script>
+</body>
+</html>

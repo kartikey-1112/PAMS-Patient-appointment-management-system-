@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Registration - HealthCare Pro</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+
+    body {
+
+      background-color: #f8f9fa;
+
+    }
+
+    footer {
+
+      border-top: 1px solid #ddd;
+
+    }
+</style>
+</head>
+<body class="bg-light">
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<div class="container">
+<a class="navbar-brand fw-bold text-primary" href="../index.html" style="font-size: 1.5rem;">
+<i class="fas fa-heartbeat me-2"></i>HealthCare Pro
+</a>
+<div class="d-flex gap-2">
+<a href="../register.html" class="btn btn-outline-secondary">
+<i class="fas fa-arrow-left me-1"></i>Back
+</a>
+<a href="../login.html" class="btn btn-primary">
+<i class="fas fa-sign-in-alt me-1"></i>Login
+</a>
+</div>
+</div>
+</nav>
+<div class="container py-5">
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<!-- Header -->
+<div class="text-center mb-4">
+<div class="bg-success bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+<i class="fas fa-user-md text-white" style="font-size: 2rem;"></i>
+</div>
+<h1 class="h2 fw-bold text-dark">Doctor Registration</h1>
+<p class="text-muted">Apply to join our network of healthcare professionals</p>
+<div class="alert alert-info d-inline-block">
+<i class="fas fa-info-circle me-2"></i>
+
+            All doctor applications require admin approval before activation
+</div>
+</div>
+<!-- Registration Form -->
+<div class="card shadow-lg border-0">
+<div class="card-body p-5">
+<form id="doctorRegistrationForm">
+<!-- Personal Information -->
+<div class="mb-4">
+<h5 class="text-success mb-3"><i class="fas fa-user me-2"></i>Personal Information</h5>
+<div class="row g-3">
+<div class="col-md-4">
+<label for="title" class="form-label">Title *</label>
+<select class="form-select" id="title" required>
+<option value="">Select title</option>
+<option value="dr">Dr.</option>
+<option value="prof">Prof.</option>
+<option value="mr">Mr.</option>
+<option value="mrs">Mrs.</option>
+<option value="ms">Ms.</option>
+</select>
+</div>
+<div class="col-md-4">
+<label for="firstName" class="form-label">First Name *</label>
+<input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+</div>
+<div class="col-md-4">
+<label for="lastName" class="form-label">Last Name *</label>
+<input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+</div>
+<div class="col-md-6">
+<label for="dateOfBirth" class="form-label">Date of Birth *</label>
+<input type="date" class="form-control" id="dateOfBirth" required>
+</div>
+<div class="col-md-6">
+<label for="gender" class="form-label">Gender *</label>
+<select class="form-select" id="gender" required>
+<option value="">Select gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="other">Other</option>
+<option value="prefer-not-to-say">Prefer not to say</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Professional Information -->
+<div class="mb-4">
+<h5 class="text-success mb-3"><i class="fas fa-stethoscope me-2"></i>Professional Information</h5>
+<div class="row g-3">
+<div class="col-md-6">
+<label for="licenseNumber" class="form-label">Medical License Number *</label>
+<input type="text" class="form-control" id="licenseNumber" placeholder="Enter license number" required>
+</div>
+<div class="col-md-6">
+<label for="licenseState" class="form-label">License State *</label>
+<input type="text" class="form-control" id="licenseState" placeholder="State where licensed" required>
+</div>
+<div class="col-md-6">
+<label for="specialty" class="form-label">Primary Specialty *</label>
+<select class="form-select" id="specialty" required>
+<option value="">Select specialty</option>
+<option value="cardiology">Cardiology</option>
+<option value="dermatology">Dermatology</option>
+<option value="endocrinology">Endocrinology</option>
+<option value="family-medicine">Family Medicine</option>
+<option value="gastroenterology">Gastroenterology</option>
+<option value="general-surgery">General Surgery</option>
+<option value="internal-medicine">Internal Medicine</option>
+<option value="neurology">Neurology</option>
+<option value="obstetrics-gynecology">Obstetrics & Gynecology</option>
+<option value="oncology">Oncology</option>
+<option value="orthopedics">Orthopedics</option>
+<option value="pediatrics">Pediatrics</option>
+<option value="psychiatry">Psychiatry</option>
+<option value="radiology">Radiology</option>
+<option value="urology">Urology</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="col-md-6">
+<label for="yearsExperience" class="form-label">Years of Experience *</label>
+<select class="form-select" id="yearsExperience" required>
+<option value="">Select experience</option>
+<option value="0-2">0-2 years</option>
+<option value="3-5">3-5 years</option>
+<option value="6-10">6-10 years</option>
+<option value="11-15">11-15 years</option>
+<option value="16-20">16-20 years</option>
+<option value="20+">20+ years</option>
+</select>
+</div>
+<div class="col-12">
+<label for="medicalSchool" class="form-label">Medical School *</label>
+<input type="text" class="form-control" id="medicalSchool" placeholder="Name of medical school attended" required>
+</div>
+<div class="col-md-6">
+<label for="graduationYear" class="form-label">Graduation Year *</label>
+<input type="number" class="form-control" id="graduationYear" placeholder="YYYY" min="1950" max="2025" required>
+</div>
+<div class="col-md-6">
+<label for="boardCertification" class="form-label">Board Certification</label>
+<input type="text" class="form-control" id="boardCertification" placeholder="Board certification details">
+</div>
+</div>
+</div>
+<!-- Current Practice -->
+<div class="mb-4">
+<h5 class="text-success mb-3"><i class="fas fa-hospital me-2"></i>Current Practice Information</h5>
+<div class="row g-3">
+<div class="col-md-6">
+<label for="hospitalAffiliation" class="form-label">Hospital/Clinic Affiliation</label>
+<input type="text" class="form-control" id="hospitalAffiliation" placeholder="Current hospital or clinic">
+</div>
+<div class="col-md-6">
+<label for="practiceType" class="form-label">Practice Type *</label>
+<select class="form-select" id="practiceType" required>
+<option value="">Select practice type</option>
+<option value="hospital">Hospital</option>
+<option value="private-practice">Private Practice</option>
+<option value="clinic">Clinic</option>
+<option value="academic">Academic Medical Center</option>
+<option value="telemedicine">Telemedicine Only</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="col-12">
+<label for="practiceAddress" class="form-label">Practice Address</label>
+<input type="text" class="form-control" id="practiceAddress" placeholder="Street address of practice">
+</div>
+<div class="col-md-4">
+<label for="practiceCity" class="form-label">City</label>
+<input type="text" class="form-control" id="practiceCity" placeholder="City">
+</div>
+<div class="col-md-4">
+<label for="practiceState" class="form-label">State</label>
+<input type="text" class="form-control" id="practiceState" placeholder="State">
+</div>
+<div class="col-md-4">
+<label for="practiceZip" class="form-label">ZIP Code</label>
+<input type="text" class="form-control" id="practiceZip" placeholder="12345">
+</div>
+</div>
+</div>
+<!-- Contact Information -->
+<div class="mb-4">
+<h5 class="text-success mb-3"><i class="fas fa-address-book me-2"></i>Contact Information</h5>
+<div class="row g-3">
+<div class="col-md-6">
+<label for="email" class="form-label">Professional Email *</label>
+<div class="input-group">
+<span class="input-group-text"><i class="fas fa-envelope text-muted"></i></span>
+<input type="email" class="form-control" id="email" placeholder="doctor@hospital.com" required>
+</div>
+</div>
+<div class="col-md-6">
+<label for="phone" class="form-label">Professional Phone *</label>
+<div class="input-group">
+<span class="input-group-text"><i class="fas fa-phone text-muted"></i></span>
+<input type="tel" class="form-control" id="phone" placeholder="(123) 456-7890" required>
+</div>
+</div>
+<div class="col-md-6">
+<label for="alternatePhone" class="form-label">Alternate Phone</label>
+<input type="tel" class="form-control" id="alternatePhone" placeholder="(123) 456-7890">
+</div>
+<div class="col-md-6">
+<label for="npiNumber" class="form-label">NPI Number</label>
+<input type="text" class="form-control" id="npiNumber" placeholder="National Provider Identifier">
+</div>
+</div>
+</div>
+<!-- Account Security -->
+<div class="mb-4">
+<h5 class="text-success mb-3"><i class="fas fa-shield-alt me-2"></i>Account Security</h5>
+<div class="row g-3">
+<div class="col-md-6">
+<label for="password" class="form-label">Password *</label>
+<div class="input-group">
+<span class="input-group-text"><i class="fas fa-lock text-muted"></i></span>
+<input type="password" class="form-control" id="password" placeholder="Enter password" required>
+</div>
+</div>
+<div class="col-md-6">
+<label for="confirmPassword" class="form-label">Confirm Password *</label>
+<div class="input-group">
+<span class="input-group-text"><i class="fas fa-lock text-muted"></i></span>
+<input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" required>
+</div>
+</div>
+</div>
+</div>
+<!-- Terms and Conditions -->
+<div class="form-check mb-4">
+<input class="form-check-input" type="checkbox" id="terms" required>
+<label class="form-check-label" for="terms">
+
+                  I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+</label>
+</div>
+<!-- Submit Button -->
+<div class="d-grid">
+<button type="submit" class="btn btn-success btn-lg">
+<i class="fas fa-paper-plane me-2"></i>Submit Application
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Success Message -->
+<div id="successMessage" class="alert alert-success mt-4 d-none">
+<i class="fas fa-check-circle me-2"></i>
+
+          Registration submitted successfully! Please wait for admin approval.
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-white text-center py-3 mt-5 border-top">
+<p class="mb-0 text-muted">&copy; 2025 HealthCare Pro. All rights reserved.</p>
+</footer>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    document.getElementById('doctorRegistrationForm').addEventListener('submit', function(event) {
+
+      event.preventDefault();
+
+      const password = document.getElementById('password').value;
+
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+
+        alert('Passwords do not match!');
+
+        return;
+
+      }
+
+      document.getElementById('successMessage').classList.remove('d-none');
+
+      this.reset();
+
+    });
+</script>
+</body>
+</html>
+ 
